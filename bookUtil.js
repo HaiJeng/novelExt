@@ -5,20 +5,20 @@ class Book {
      * @param {vscode.ExtensionContext} extensionContext
      */
     constructor(extensionContext) {
-            this.extensionContext = extensionContext;
-            this.curr_page_number = 0;
-            this.page = 0;
-        }
-        /**
-         * @param {string[]} text
-         */
+        this.extensionContext = extensionContext;
+        this.curr_page_number = 0;
+        this.page = 0;
+    }
+    /**
+     * @param {string[]} text
+     */
     getSize(text) {
-            console.log("text", text)
-            this.page = text.length - 1;
-        }
-        /**
-         * @param {string} type
-         */
+        console.log("text", text)
+        this.page = text.length - 1;
+    }
+    /**
+     * @param {string} type
+     */
     getPage(type) {
 
         let curr_page = this.extensionContext.workspaceState.get('novelExt.currPageNumber');

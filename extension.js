@@ -200,6 +200,7 @@ function activate(context) {
         context.workspaceState.update('novelExt.currPageNumber', 0);
         vscode.window.showInformationMessage("数据已抓取,数据长度" + ls.length);
         context.globalState.update("novelExt.bookName", msg);
+        hideAllBar();
         return;
         if (path.lastIndexOf('.txt') >= 0) {
             let tmp = fs.readFileSync(path);
@@ -262,7 +263,7 @@ function activate(context) {
                 if (s[i].indexOf(msg) > -1) {
                     vscode.window.showInformationMessage('行数:' + i);
                     context.workspaceState.update('novelExt.currPageNumber', i);
-                    getJumpingPage;
+                    JumpingPage();
                     break;
                 }
             }
@@ -344,10 +345,7 @@ function activate(context) {
     let displayCode = vscode.commands.registerCommand('novelExt.displayCode', () => {
         console.log('novelExt.displayCode');
         vscode.window.setStatusBarMessage('');
-        prevBar.hide()
-        nextBar.hide()
-        hideBar.hide()
-        jumpBar.show()
+        hideAllBar();
         // let channel = <OutputChannel>context.workspaceState.get("novelExt.channel");
         // channel.show(true);
         // channel.replace('');
@@ -358,6 +356,7 @@ function activate(context) {
         console.log('novelExt.getNextPage');
         let books = new Book(context);
         vscode.window.setStatusBarMessage(books.getNextPage());
+        showBar();
         // let channel = <OutputChannel>context.workspaceState.get("novelExt.channel");
         // channel.show(true);
         // channel.replace(books.getNextPage());
@@ -369,29 +368,43 @@ function activate(context) {
 
         let books = new Book(context);
         vscode.window.setStatusBarMessage(books.getPreviousPage());
+        showBar();
         // let channel = <OutputChannel>context.workspaceState.get("novelExt.channel");
         // channel.show(true);
         // channel.replace(books.getPreviousPage());
     });
 
-    // 跳转某个页面
-    let getJumpingPage = vscode.commands.registerCommand('novelExt.getJumpingPage', () => {
-        console.log('novelExt.getJumpingPage');
-
+    let JumpingPage=()=>{
         let books = new Book(context);
         let tmp = books.getJumpingPage();
         console.log(tmp, "tmp");
         vscode.window.setStatusBarMessage(tmp);
-        prevBar.show()
-        nextBar.show()
-        hideBar.show()
-        jumpBar.hide()
+        showBar();
         // let channel = <OutputChannel>context.workspaceState.get("novelExt.channel");
         // console.log("novelExt.channel",channel);
 
         // channel.show(true);
         // channel.replace(tmp);
+    };
+
+    // 跳转某个页面
+    let getJumpingPage = vscode.commands.registerCommand('novelExt.getJumpingPage', () => {
+        console.log('novelExt.getJumpingPage');
+        JumpingPage();
     });
+
+    let showBar=()=>{
+        prevBar.show()
+        nextBar.show()
+        hideBar.show()
+        jumpBar.hide()
+    };
+    let hideAllBar=()=>{
+        prevBar.hide()
+        nextBar.hide()
+        hideBar.hide()
+        jumpBar.show()
+    };
     context.subscriptions.push(tryLogin);
     context.subscriptions.push(clearLogin);
     context.subscriptions.push(getCollections);
