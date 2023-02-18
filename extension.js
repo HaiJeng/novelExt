@@ -175,7 +175,9 @@ function activate(context) {
     });
     let openDirBook = (/** @type {string} */ msg) => {
         let ls = [];
-        let path = msg
+        var pattern = /(^\"*)|(\"*$)/g;
+        console.log(msg.replace(pattern,""))
+        let path = msg.replace(pattern,"");
         let tmp = fs.readFileSync(path);
         let x = tmp.toLocaleString();
         x = x.replace(/ +/g, '');
