@@ -7,13 +7,11 @@ const QueryClass = require('./querClass');
 const cheerio = require('cheerio');
 const fs = require('fs');
 const epub = require('epub');
-
-
 // 状态栏
 let nextBar = null
 let prevBar = null
 let hideBar = null
-let jumpBar=null
+let jumpBar = null
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -176,8 +174,9 @@ function activate(context) {
     let openDirBook = (/** @type {string} */ msg) => {
         let ls = [];
         var pattern = /(^\"*)|(\"*$)/g;
-        console.log(msg.replace(pattern,""))
-        let path = msg.replace(pattern,"");
+        console.log(msg.replace(pattern, ""))
+        let path = msg.replace(pattern, "");
+
         let tmp = fs.readFileSync(path);
         let x = tmp.toLocaleString();
         x = x.replace(/ +/g, '');

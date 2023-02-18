@@ -1,9 +1,5 @@
 # Change Log
 
-All notable changes to the "novelExt" extension will be documented in this file.
+## 2月18日10:58
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+读取本地txt文件时，可理解"path"和path了

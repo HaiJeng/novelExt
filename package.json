@@ -2,7 +2,7 @@
     "name": "novelExt",
     "displayName": "novelExt",
     "description": "novelExt",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.71.0"
     },
@@ -11,7 +11,7 @@
         "Other"
     ],
     "repository": {
-        "type":"git",
+        "type": "git",
         "url": "https://github.com/HaiJeng/novelExt"
     },
     "activationEvents": [
@@ -111,6 +111,8 @@
         "cheerio": "^1.0.0-rc.12",
         "epub": "^1.2.1",
         "fs": "^0.0.1-security",
-        "iconv-lite": "^0.6.3"
+        "iconv-lite": "^0.6.3",
+        "jschardet": "^3.0.0",
+        "string_decoder": "^1.3.0"
     }
 }
