@@ -175,11 +175,10 @@ function activate(context) {
         let ls = [];
         var pattern = /(^\"*)|(\"*$)/g;
         console.log(msg.replace(pattern, ""))
-        let path = msg.replace(pattern, "");
-
+        let path = msg.replace(pattern, ""); 
         let tmp = fs.readFileSync(path);
         let x = tmp.toLocaleString();
-        x = x.replace(/ +/g, '');
+        x = x.replace(/ +/g, '').replace(/<\/p>/g,'\n').replace(/<p>/g, '');
         let s = x.split('\r');
         s = s.flatMap(it => it.split('\n'));
         // s.forEach(it => console.log(it));
@@ -374,7 +373,7 @@ function activate(context) {
         // channel.replace(books.getPreviousPage());
     });
 
-    let JumpingPage=()=>{
+    let JumpingPage = () => {
         let books = new Book(context);
         let tmp = books.getJumpingPage();
         console.log(tmp, "tmp");
@@ -393,13 +392,13 @@ function activate(context) {
         JumpingPage();
     });
 
-    let showBar=()=>{
+    let showBar = () => {
         prevBar.show()
         nextBar.show()
         hideBar.show()
         jumpBar.hide()
     };
-    let hideAllBar=()=>{
+    let hideAllBar = () => {
         prevBar.hide()
         nextBar.hide()
         hideBar.hide()
