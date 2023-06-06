@@ -183,7 +183,7 @@ function activate(context) {
         let path = msg.replace(pattern, ""); 
         let tmp = fs.readFileSync(path);
         let x = tmp.toLocaleString();
-        x = x.replace(/ +/g, '').replace(/<\/p>/g,'\n').replace(/<p>/g, '');
+        x = x.replace(/ +/g, '').replace(/<\/p>/g,'\n').replace(/<p>/g, '').replace(/&emsp;/g, '');
         let s = x.split('\r');
         s = s.flatMap(it => it.split('\n'));
         // s.forEach(it => console.log(it));
