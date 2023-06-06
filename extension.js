@@ -127,7 +127,12 @@ function activate(context) {
         context.globalState.update("novelExt.password", undefined);
     });
     let clearOpenDirBook = vscode.commands.registerCommand('novelExt.clearOpenDirBook', () => {
-        context.globalState.update("novelExt.bookName", undefined);
+        let flag=context.globalState.update("novelExt.bookName", undefined);
+        if(flag){
+            vscode.window.showInformationMessage("清除成功");
+        }else{
+            vscode.window.showErrorMessage("清除失败");
+        }
     });
     let getCollections = vscode.commands.registerCommand('novelExt.getCollections', () => {
         let security_key = context.workspaceState.get("novelExt.security_key");
