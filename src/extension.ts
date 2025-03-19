@@ -5,28 +5,28 @@ import Book from './model/bookUtil';
 import fs from 'fs';
 import { error } from 'console';
 // 状态栏
-let nextBar: vscode.StatusBarItem | null = null
-let prevBar: vscode.StatusBarItem | null = null
-let hideBar: vscode.StatusBarItem | null = null
-let jumpBar: vscode.StatusBarItem | null = null
+let nextBar: vscode.StatusBarItem | null = null;
+let prevBar: vscode.StatusBarItem | null = null;
+let hideBar: vscode.StatusBarItem | null = null;
+let jumpBar: vscode.StatusBarItem | null = null;
 function init() {
 	// 上一页的bar
 	prevBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
 	prevBar.text = "上一页";
-	prevBar.command = 'novelexttype.getPreviousPage'
+	prevBar.command = 'novelexttype.getPreviousPage';
 
 	// 下一页的bar
 	nextBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
 	nextBar.text = "下一页";
-	nextBar.command = 'novelexttype.getNextPage'
+	nextBar.command = 'novelexttype.getNextPage';
 	// 老板键的bar
 	hideBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
 	hideBar.text = "隐藏";
-	hideBar.command = 'novelexttype.displayCode'
+	hideBar.command = 'novelexttype.displayCode';
 	// 展示的bar
 	jumpBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
 	jumpBar.text = "显示";
-	jumpBar.command = 'novelexttype.getJumpingPage'
+	jumpBar.command = 'novelexttype.getJumpingPage';
 }
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -57,7 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
 	const openDirBook = (msg: string) => {
 		let ls = [];
 		var pattern = /(^\"*)|(\"*$)/g;
-		console.log(msg.replace(pattern, ""))
+		console.log(msg.replace(pattern, ""));
 		let path = msg.replace(pattern, "");
 		let tmp = fs.readFileSync(path);
 		let x = tmp.toLocaleString();
